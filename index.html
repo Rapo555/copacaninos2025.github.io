@@ -3,361 +3,373 @@
 <head>
   <meta charset="UTF-8" />
   <title>Copa Caninos 2025</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Logocaninos25png.png" />
+
   <style>
-    * {
+    /* ====== RESET BÁSICO ====== */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      background: #0f172a;
-      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
+      color: #f5f5f5;
+      line-height: 1.5;
       min-height: 100vh;
-      padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
     }
 
-    .container {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ====== LAYOUT GENERAL ====== */
+    .page {
       max-width: 1100px;
       margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
     }
 
+    /* ====== HEADER ====== */
     header {
-      text-align: center;
-      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1.25rem;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
+    .logo {
+      height: 64px;
+      width: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #facc15;
-      text-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
-      margin-bottom: 6px;
     }
 
-    header p {
+    .subtitle {
       font-size: 0.95rem;
-      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #b0b0b0;
     }
 
-    /* Categorías */
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #e5e7eb;
+    /* ====== SECCIÓN CATEGORÍAS ====== */
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      color: #e5e5e5;
+    }
+
+    .section-caption {
+      font-size: 0.9rem;
+      color: #a0a0a0;
+      margin-bottom: 1.5rem;
     }
 
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    @media (max-width: 900px) {
-      .categories-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      .categories-grid {
-        grid-template-columns: 1fr;
-      }
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
     }
 
     .category-card {
-      background: linear-gradient(135deg, #111827, #020617);
-      border-radius: 18px;
-      padding: 16px 18px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.6);
+      border: 1px solid #333;
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.2rem;
+      background: radial-gradient(circle at top left, #181818, #050505);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-      overflow: hidden;
+      cursor: pointer;
     }
 
-    .category-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.16), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .category-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.8);
-      border-color: rgba(250, 204, 21, 0.6);
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), #020617);
-    }
-
-    .category-card:hover::before {
-      opacity: 1;
-    }
-
-    .category-tag {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-      margin-bottom: 10px;
+    .category-card:hover,
+    .category-card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255,255,255,0.06);
+      border-color: #555;
+      background: radial-gradient(circle at top left, #222, #080808);
+      outline: none;
     }
 
     .category-name {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #f9fafb;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.4rem;
     }
 
-    .category-info {
+    .category-tag {
       font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 12px;
+      color: #9a9a9a;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
     }
 
-    .category-link {
+    .category-arrow {
+      margin-top: 0.9rem;
       font-size: 0.8rem;
-      color: #facc15;
-      display: inline-flex;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #cfcfcf;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      font-weight: 500;
+      gap: 0.5rem;
     }
 
-    .category-link span.arrow {
-      font-size: 0.9rem;
-      transition: transform 0.15s ease;
+    .category-arrow span.icon {
+      border: 1px solid #555;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem 0.2rem;
+      font-size: 0.7rem;
     }
 
-    .category-card:hover .category-link span.arrow {
-      transform: translateX(3px);
-    }
-
-    /* Goleadores */
-    .goleadores-section {
-      background: #020617;
-      border-radius: 22px;
-      padding: 20px 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-    }
-
-    .goleadores-header {
+    /* ====== SELECT CATEGORÍA GOLEADORES ====== */
+    .goleadores-controls {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .goleadores-title-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .goleadores-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #f9fafb;
-    }
-
-    .goleadores-subtitle {
-      font-size: 0.8rem;
-      color: #9ca3af;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e5e5e5;
     }
 
     .select-wrapper {
       position: relative;
       display: inline-block;
+      min-width: 230px;
     }
 
     .select-wrapper select {
+      width: 100%;
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      background: #020617;
+      background: #050505;
+      border: 1px solid #444;
+      color: #f5f5f5;
+      padding: 0.55rem 2.5rem 0.55rem 0.75rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      padding: 8px 36px 8px 12px;
-      font-size: 0.8rem;
-      color: #e5e7eb;
+      font-size: 0.9rem;
       cursor: pointer;
     }
 
     .select-wrapper::after {
-      content: "▾";
+      content: "▼";
       position: absolute;
-      right: 10px;
+      right: 0.9rem;
       top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
+      transform: translateY(-55%);
       font-size: 0.7rem;
-      color: #9ca3af;
+      color: #aaa;
+      pointer-events: none;
+    }
+
+    .select-wrapper select:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    /* ====== TABLA GOLEADORES ====== */
+    .table-wrapper {
+      border-radius: 0.75rem;
+      border: 1px solid #333;
+      background: #050505;
+      overflow: hidden;
+      max-width: 600px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 0.85rem;
-      overflow: hidden;
-      border-radius: 14px;
+      font-size: 0.9rem;
     }
 
     thead {
-      background: rgba(15, 23, 42, 0.95);
+      background: #111;
     }
 
     th, td {
-      padding: 10px 12px;
+      padding: 0.75rem 1rem;
       text-align: left;
+      border-bottom: 1px solid #222;
     }
 
     th {
-      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #9ca3af;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      color: #bfbfbf;
     }
 
-    tbody tr:nth-child(even) {
-      background: rgba(15, 23, 42, 0.55);
+    tbody tr:last-child td {
+      border-bottom: none;
     }
 
-    tbody tr:nth-child(odd) {
-      background: rgba(15, 23, 42, 0.9);
+    tbody tr:nth-child(1) td {
+      font-weight: 600;
     }
 
     tbody tr:hover {
-      background: rgba(55, 65, 81, 0.9);
+      background: #101010;
     }
 
-    .pos {
-      font-weight: 600;
-      color: #facc15;
-    }
-
-    .player-name {
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-
-    .team-name {
-      font-size: 0.78rem;
-      color: #9ca3af;
+    .rank {
+      width: 60px;
+      font-variant-numeric: tabular-nums;
+      color: #bfbfbf;
     }
 
     .goals {
       text-align: right;
-      font-weight: 600;
-      color: #f9fafb;
+      font-variant-numeric: tabular-nums;
     }
 
+    .category-label {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a0a0a0;
+    }
+
+    /* ====== FOOTER ====== */
     footer {
-      margin-top: 20px;
+      margin-top: auto;
+      padding: 1rem 1.25rem 1.2rem;
+      border-top: 1px solid #222;
       text-align: center;
       font-size: 0.75rem;
-      color: #6b7280;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+      }
+      .logo {
+        height: 52px;
+      }
+      .goleadores-controls {
+        align-items: flex-start;
+      }
+      .table-wrapper {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
+    <!-- HEADER -->
     <header>
-      <h1>Copa Caninos 2025</h1>
-      <p>Fixture, resultados y tabla de goleadores por categoría</p>
+      <img src="Logocaninos25png.png" alt="Logo Copa Caninos 2025" class="logo" />
+      <div class="title-block">
+        <h1>Copa Caninos 2025</h1>
+        <div class="subtitle">Torneo de Fútbol</div>
+      </div>
     </header>
 
-    <!-- Sección de categorías -->
-    <section>
-      <h2 class="section-title">Categorías</h2>
+    <!-- CATEGORÍAS -->
+    <section aria-labelledby="categorias-title">
+      <h2 id="categorias-title">Categorías</h2>
+      <p class="section-caption">
+        Elige la categoría para ir a su sitio específico (cuando esté disponible).
+      </p>
+
       <div class="categories-grid">
-        <!-- IMPORTANTE: Cambia los href por los links reales cuando tengas cada sitio -->
         <a class="category-card" href="varonil-secundaria.html">
           <div>
-            <div class="category-tag">Varonil</div>
-            <div class="category-name">Secundaria</div>
-            <div class="category-info">
-              Jugadores de nivel secundaria. Calendario, resultados, tabla y estadísticas.
-            </div>
+            <div class="category-name">Varonil Secundaria</div>
+            <div class="category-tag">Sub 15 – Nivel Secundaria</div>
           </div>
-          <div class="category-link">
-            Ver sitio de la categoría <span class="arrow">➜</span>
+          <div class="category-arrow">
+            <span class="icon">&rarr;</span>
+            <span>Entrar a la categoría</span>
           </div>
         </a>
 
         <a class="category-card" href="varonil-preparatoria.html">
           <div>
-            <div class="category-tag">Varonil</div>
-            <div class="category-name">Preparatoria</div>
-            <div class="category-info">
-              Competencia de preparatorias. Toda la info de la categoría aquí.
-            </div>
+            <div class="category-name">Varonil Preparatoria</div>
+            <div class="category-tag">Sub 18 – Nivel Preparatoria</div>
           </div>
-          <div class="category-link">
-            Ver sitio de la categoría <span class="arrow">➜</span>
+          <div class="category-arrow">
+            <span class="icon">&rarr;</span>
+            <span>Entrar a la categoría</span>
           </div>
         </a>
 
         <a class="category-card" href="varonil-libre.html">
           <div>
-            <div class="category-tag">Varonil</div>
-            <div class="category-name">Libre</div>
-            <div class="category-info">
-              Categoría libre varonil. Equipos, tabla, resultados y goleadores.
-            </div>
+            <div class="category-name">Varonil Libre</div>
+            <div class="category-tag">Libre – Adultos</div>
           </div>
-          <div class="category-link">
-            Ver sitio de la categoría <span class="arrow">➜</span>
+          <div class="category-arrow">
+            <span class="icon">&rarr;</span>
+            <span>Entrar a la categoría</span>
           </div>
         </a>
 
         <a class="category-card" href="femenil.html">
           <div>
-            <div class="category-tag">Femenil</div>
             <div class="category-name">Femenil</div>
-            <div class="category-info">
-              Todas las estadísticas y resultados de la categoría femenil.
-            </div>
+            <div class="category-tag">Libre – Femenil</div>
           </div>
-          <div class="category-link">
-            Ver sitio de la categoría <span class="arrow">➜</span>
+          <div class="category-arrow">
+            <span class="icon">&rarr;</span>
+            <span>Entrar a la categoría</span>
           </div>
         </a>
       </div>
     </section>
 
-    <!-- Sección de goleadores -->
-    <section class="goleadores-section">
-      <div class="goleadores-header">
-        <div class="goleadores-title-wrapper">
-          <div class="goleadores-title">Tabla de goleadores</div>
-          <div class="goleadores-subtitle">
-            Top 3 goleadores por categoría · Datos de ejemplo (puedes modificarlos)
-          </div>
-        </div>
+    <!-- GOLEADORES -->
+    <section aria-labelledby="goleadores-title">
+      <h2 id="goleadores-title">Tabla de goleadores</h2>
+
+      <div class="goleadores-controls">
+        <div class="goleadores-title">Top 3 por categoría</div>
+
         <div class="select-wrapper">
-          <select id="categoriaSelect">
+          <select id="categoriaSelect" aria-label="Seleccionar categoría de goleadores">
             <option value="varonil-secundaria">Varonil Secundaria</option>
             <option value="varonil-preparatoria">Varonil Preparatoria</option>
             <option value="varonil-libre">Varonil Libre</option>
@@ -366,93 +378,104 @@
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Jugador</th>
-            <th>Equipo</th>
-            <th style="text-align:right;">Goles</th>
-          </tr>
-        </thead>
-        <tbody id="tablaGoleadoresBody">
-          <!-- Se llena dinámicamente con JS -->
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th class="rank">Pos.</th>
+              <th>Jugador</th>
+              <th>Equipo</th>
+              <th class="goals">Goles</th>
+            </tr>
+          </thead>
+          <tbody id="tablaGoleadores">
+            <!-- Filas generadas por JavaScript -->
+          </tbody>
+        </table>
+      </div>
+      <div id="categoriaLabel" class="category-label"></div>
     </section>
-
-    <footer>
-      © 2025 Copa Caninos · Sitio en desarrollo
-    </footer>
   </div>
 
+  <footer>
+    Copa Caninos 2025 &mdash; Información sujeta a cambios según la organización del torneo.
+  </footer>
+
   <script>
-    // Datos de ejemplo de goleadores. Cambia nombres, equipos y goles a los reales.
-    const goleadoresPorCategoria = {
+    // Datos de ejemplo: cámbialos por los oficiales cuando los tengas
+    const goleadoresData = {
       "varonil-secundaria": [
-        { nombre: "Jugador Sec 1", equipo: "Secundaria A", goles: 7 },
-        { nombre: "Jugador Sec 2", equipo: "Secundaria B", goles: 6 },
-        { nombre: "Jugador Sec 3", equipo: "Secundaria C", goles: 5 }
+        { jugador: "Jugador Sec 1", equipo: "Secundaria A", goles: 7 },
+        { jugador: "Jugador Sec 2", equipo: "Secundaria B", goles: 5 },
+        { jugador: "Jugador Sec 3", equipo: "Secundaria C", goles: 4 }
       ],
       "varonil-preparatoria": [
-        { nombre: "Jugador Prep 1", equipo: "Prepa Norte", goles: 8 },
-        { nombre: "Jugador Prep 2", equipo: "Prepa Sur", goles: 6 },
-        { nombre: "Jugador Prep 3", equipo: "Prepa Centro", goles: 5 }
+        { jugador: "Jugador Prep 1", equipo: "Prepa A", goles: 8 },
+        { jugador: "Jugador Prep 2", equipo: "Prepa B", goles: 6 },
+        { jugador: "Jugador Prep 3", equipo: "Prepa C", goles: 5 }
       ],
       "varonil-libre": [
-        { nombre: "Jugador Libre 1", equipo: "Caninos FC", goles: 10 },
-        { nombre: "Jugador Libre 2", equipo: "Atlético Parque", goles: 8 },
-        { nombre: "Jugador Libre 3", equipo: "Barrio Unido", goles: 7 }
+        { jugador: "Jugador Libre 1", equipo: "Libre A", goles: 10 },
+        { jugador: "Jugador Libre 2", equipo: "Libre B", goles: 7 },
+        { jugador: "Jugador Libre 3", equipo: "Libre C", goles: 6 }
       ],
       "femenil": [
-        { nombre: "Jugadora Fem 1", equipo: "Femenil Aurora", goles: 9 },
-        { nombre: "Jugadora Fem 2", equipo: "Estrellas FC", goles: 7 },
-        { nombre: "Jugadora Fem 3", equipo: "Panteras", goles: 6 }
+        { jugador: "Jugadora Fem 1", equipo: "Femenil A", goles: 9 },
+        { jugador: "Jugadora Fem 2", equipo: "Femenil B", goles: 7 },
+        { jugador: "Jugadora Fem 3", equipo: "Femenil C", goles: 5 }
       ]
     };
 
-    const selectCategoria = document.getElementById("categoriaSelect");
-    const tbody = document.getElementById("tablaGoleadoresBody");
+    const etiquetasCategorias = {
+      "varonil-secundaria": "Varonil Secundaria",
+      "varonil-preparatoria": "Varonil Preparatoria",
+      "varonil-libre": "Varonil Libre",
+      "femenil": "Femenil"
+    };
+
+    const tablaGoleadoresBody = document.getElementById("tablaGoleadores");
+    const categoriaSelect = document.getElementById("categoriaSelect");
+    const categoriaLabel = document.getElementById("categoriaLabel");
 
     function renderTabla(categoriaKey) {
-      const datos = goleadoresPorCategoria[categoriaKey] || [];
-      tbody.innerHTML = "";
+      const datos = goleadoresData[categoriaKey] || [];
+      tablaGoleadoresBody.innerHTML = "";
 
-      datos.forEach((jugador, index) => {
+      datos.forEach((row, index) => {
         const tr = document.createElement("tr");
 
-        const tdPos = document.createElement("td");
-        tdPos.textContent = index + 1;
-        tdPos.className = "pos";
+        const tdRank = document.createElement("td");
+        tdRank.className = "rank";
+        tdRank.textContent = index + 1;
 
-        const tdNombre = document.createElement("td");
-        tdNombre.textContent = jugador.nombre;
-        tdNombre.className = "player-name";
+        const tdJugador = document.createElement("td");
+        tdJugador.textContent = row.jugador;
 
         const tdEquipo = document.createElement("td");
-        tdEquipo.textContent = jugador.equipo;
-        tdEquipo.className = "team-name";
+        tdEquipo.textContent = row.equipo;
 
         const tdGoles = document.createElement("td");
-        tdGoles.textContent = jugador.goles;
         tdGoles.className = "goals";
+        tdGoles.textContent = row.goles;
 
-        tr.appendChild(tdPos);
-        tr.appendChild(tdNombre);
+        tr.appendChild(tdRank);
+        tr.appendChild(tdJugador);
         tr.appendChild(tdEquipo);
         tr.appendChild(tdGoles);
 
-        tbody.appendChild(tr);
+        tablaGoleadoresBody.appendChild(tr);
       });
+
+      categoriaLabel.textContent = "Categoría: " + (etiquetasCategorias[categoriaKey] || "");
     }
 
-    // Evento para cambiar de categoría
-    selectCategoria.addEventListener("change", (e) => {
+    // Evento de cambio de categoría
+    categoriaSelect.addEventListener("change", (e) => {
       renderTabla(e.target.value);
     });
 
-    // Render por defecto (primera categoría)
-    renderTabla(selectCategoria.value);
+    // Render inicial
+    renderTabla(categoriaSelect.value);
   </script>
 </body>
 </html>
